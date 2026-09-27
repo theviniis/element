@@ -1179,6 +1179,18 @@ void GuiService::refreshSystemTray()
 #endif
 }
 
+bool GuiService::shouldHideMainWindowOnClose()
+{
+#if ELEMENT_USE_SYSTEM_TRAY
+    const auto& settings = context().settings();
+    auto* tray = SystemTray::getInstance();
+    return settings.isCloseToTrayEnabled() && settings.isSystrayEnabled()
+           && SystemTray::isAvailable() && tray != nullptr && tray->isOnDesktop();
+#else
+    return false;
+#endif
+}
+
 void GuiService::setMainWindowTitler (std::function<juce::String()> f)
 {
     if (mainWindow)

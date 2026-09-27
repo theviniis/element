@@ -119,6 +119,13 @@ void MainWindow::nameChangedSession()
 
 void MainWindow::closeButtonPressed()
 {
+    auto& gui = *world.services().find<GuiService>();
+    if (gui.shouldHideMainWindowOnClose())
+    {
+        gui.commands().invokeDirectly (Commands::toggleUserInterface, true);
+        return;
+    }
+
     JUCEApplication* app (JUCEApplication::getInstance());
     app->systemRequestedQuit();
 }

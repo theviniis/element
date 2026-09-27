@@ -45,6 +45,7 @@ public:
     static const char* oscHostEnabledKey;
     static const char* systrayKey;
     static const char* startHiddenKey;
+    static const char* closeToTrayKey;
     static const char* midiOutLatencyKey;
     static const char* desktopScaleKey;
     static const char* mainContentTypeKey;
@@ -134,6 +135,12 @@ public:
         Only meaningful when the system tray is enabled and available. */
     bool isStartHiddenEnabled() const;
     void setStartHiddenEnabled (bool);
+
+    /** True if closing the main window should hide it to the system tray
+        instead of quitting. Only meaningful when the system tray is enabled
+        and available. */
+    bool isCloseToTrayEnabled() const;
+    void setCloseToTrayEnabled (bool);
 
     double getMidiOutLatency() const;
     void setMidiOutLatency (double latencyMs);

@@ -421,6 +421,7 @@ public:
         systray.init (*this, "Show system tray", settings.isSystrayEnabled(), [this]() {
             settings.setSystrayEnabled (systray.get());
             startHidden.setEnabled (systray.get());
+            closeToTray.setEnabled (systray.get());
             gui.refreshSystemTray();
             settingChanged();
         });
@@ -429,6 +430,11 @@ public:
             settingChanged();
         });
         startHidden.setEnabled (systray.get());
+        closeToTray.init (*this, "Close button minimizes to tray", settings.isCloseToTrayEnabled(), [this]() {
+            settings.setCloseToTrayEnabled (closeToTray.get());
+            settingChanged();
+        });
+        closeToTray.setEnabled (systray.get());
 
         addAndMakeVisible (desktopScaleLabel);
         desktopScaleLabel.setText ("Desktop scale", dontSendNotification);
@@ -524,6 +530,7 @@ public:
         layoutSetting (r, mainContentLabel, mainContentBox, comboWidth);
         layoutSetting (r, systray);
         layoutSetting (r, startHidden);
+        layoutSetting (r, closeToTray);
         layoutSetting (r, desktopScaleLabel, desktopScale, getWidth() / 4);
 
 #if ! ELEMENT_SE
@@ -586,6 +593,7 @@ private:
 
     BoolSettingRow systray;
     BoolSettingRow startHidden;
+    BoolSettingRow closeToTray;
 
     Label desktopScaleLabel;
     Slider desktopScale;

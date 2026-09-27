@@ -33,6 +33,7 @@ const char* Settings::oscHostPortKey = "oscHostPortKey";
 const char* Settings::oscHostEnabledKey = "oscHostEnabledKey";
 const char* Settings::systrayKey = "systrayKey";
 const char* Settings::startHiddenKey = "startHidden";
+const char* Settings::closeToTrayKey = "closeToTray";
 const char* Settings::midiOutLatencyKey = "midiOutLatency";
 const char* Settings::desktopScaleKey = "desktopScale";
 const char* Settings::mainContentTypeKey = "mainContentType";
@@ -246,6 +247,9 @@ void Settings::setSystrayEnabled (bool enabled) { set (systrayKey, enabled); }
 
 bool Settings::isStartHiddenEnabled() const { return getBool (startHiddenKey, false); }
 void Settings::setStartHiddenEnabled (bool enabled) { set (startHiddenKey, enabled); }
+
+bool Settings::isCloseToTrayEnabled() const { return getBool (closeToTrayKey, false); }
+void Settings::setCloseToTrayEnabled (bool enabled) { set (closeToTrayKey, enabled); }
 
 //=============================================================================
 double Settings::getMidiOutLatency() const { return getDouble (midiOutLatencyKey, 0.0); }

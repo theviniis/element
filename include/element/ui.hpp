@@ -86,6 +86,12 @@ public:
     /** Refershes the system tray based on Settings */
     void refreshSystemTray();
 
+    /** True if closing the main window should hide it to the system tray
+        instead of quitting the application. Requires the "close to tray"
+        preference, the tray setting and a tray icon that is actually
+        showing. */
+    bool shouldHideMainWindowOnClose();
+
     bool haveActiveWindows() const;
 
     /* Command manager... */
